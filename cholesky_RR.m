@@ -25,7 +25,7 @@ function [ R ] = cholesky_RR(A)
         error('A non è definita positiva');
     end
 
-    % inizializzo la matrice
+    % inizializziamo la matrice
     R = zeros(n);
 
     % eseguiamo il primo passo sulla prima riga

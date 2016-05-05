@@ -32,7 +32,7 @@ function [ x, converged ] = gauss_seidel(A, b, x_init, tol = eps, MAX_ITERATIONS
         error('Il metodo non converge se la matrice A non è d.d. per righe');
     end
 
-    % MATLAB è un linguaggio brutto
+    % Genera una matrice con la diagonale di A
     D = diag(diag(A));
 
     % opposta della triangolare inferiore di A,

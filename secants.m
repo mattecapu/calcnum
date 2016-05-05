@@ -40,12 +40,12 @@ function [ x, it, converged ] = secants(func, x0, x1, tol = eps, MAX_ITERATIONS 
     converged = true;
 
     while abs(x1 - x0) > tol
-        % calcolo i valori della funzione
+        % calcoliamo i valori della funzione
         % in x(i) e x(i - 1)
         func_x0 = func_x1;
         func_x1 = feval(func, x1);
 
-        % calcolo la nuova approssimazione
+        % calcoliamo la nuova approssimazione
         x_new = x1 - ((func_x1 * (x1 - x0)) / (func_x1 - func_x0));
 
         % aggiorno x(i), x(i - 1)
@@ -59,7 +59,7 @@ function [ x, it, converged ] = secants(func, x0, x1, tol = eps, MAX_ITERATIONS 
         end
     end
 
-    % ritorna il risultato
+    % ritorniamo il risultato
     x = x1;
 
 end

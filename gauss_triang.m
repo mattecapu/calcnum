@@ -29,9 +29,9 @@ function [ A, b ] = gauss_triang(A, b)
 	l = 0;
 
 	% per ogni riga della matrice
-	for k = 1:(n - 1)
+	for k = 1 : (n - 1)
 		% per ogni elemento da k in giù
-		i = (k + 1):n;
+		i = (k + 1) : n;
 			% dividiamo ogni elemento al di sotto
 			% della diagonale per il k-esimo pivot
 			l = A(i, k) / A(k, k);
@@ -41,7 +41,7 @@ function [ A, b ] = gauss_triang(A, b)
 
 			% sottraiamo ad ogni riga di A
 			% la k-esima moltiplicata per il pivot
-			j = (k + 1):n;
+			j = (k + 1) : n;
 				A(i, j) -= l * A(k, j);
 
 			% facciamo altrettanto per b

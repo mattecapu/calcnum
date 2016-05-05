@@ -1,5 +1,5 @@
 %
-% Trova uno zero di func vicino ad x0 con il metodo delle tangenti™
+% Trova uno zero di func vicino ad x0 con il metodo di Newton-Raphson™
 %
 % INPUT
 %   func:
