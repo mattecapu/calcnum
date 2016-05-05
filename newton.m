@@ -8,7 +8,7 @@
 %		Derivata della funzione precedente
 %   x:
 %       Approssimazione iniziale dello zero
-%   tol:
+%   [tol = eps]:
 %       Tolleranza sull'approssimazione
 %   [MAX_ITERATIONS = 10^5]:
 %       Numero massimo di iterazioni
@@ -23,7 +23,13 @@
 %       si è arrestato perchè la condizione di arresto è stata raggiunta
 %
 
-function [ x, it, converged ] = newton(func, func_deriv, x, tol, MAX_ITERATIONS = 10^5)
+function [ x, it, converged ] = newton(func, func_deriv, x, tol = eps, MAX_ITERATIONS = 10^5)
+
+	% verifichiamo tol sia sensato
+	if tol <= eps
+		tol = eps;
+		disp('`tol` è più piccolo della precisione di macchina, riassegnato a eps');
+	end
 
 	% stima conservativa sul valore della funzione
 	% nel punto iniziale

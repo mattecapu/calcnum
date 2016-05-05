@@ -6,7 +6,7 @@
 %       Funzione di cui trovare uno zero
 %   x0, x1:
 %       Estremi dell'intervallo di ricerca
-%   tol:
+%   [tol = eps]:
 %       Tolleranza sull'approssimazione
 %   [MAX_ITERATIONS = 10^5]:
 %       Numero massimo di iterazioni
@@ -21,7 +21,13 @@
 %       si è arrestato perchè la condizione di arresto è stata raggiunta
 %
 
-function [ x, it, converged ] = secants(func, x0, x1, tol, MAX_ITERATIONS = 10^5)
+function [ x, it, converged ] = secants(func, x0, x1, tol = eps, MAX_ITERATIONS = 10^5)
+
+    % verifichiamo tol sia sensato
+    if tol <= eps
+        tol = eps;
+        disp('`tol` è più piccolo della precisione di macchina, riassegnato a eps');
+    end
 
     % x(i + 1)
     x_new = 0;

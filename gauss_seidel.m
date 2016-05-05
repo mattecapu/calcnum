@@ -8,7 +8,7 @@
 %       Per avere convergenza dev'essere dominante per righe
 %   b:
 %       Vettore colonna dei termini noti
-%   tol:
+%   [tol = eps]:
 %       Errore tollerato sull'approssimazione
 %   [MAX_ITERATIONS = 10^5]:
 %       Numero massimo di iterazioni
@@ -20,7 +20,7 @@
 %       Booleano che indica se il metodo ha converso
 %
 
-function [ x, converged ] = gauss_seidel(A, b, x_init, tol, MAX_ITERATIONS = 10^5)
+function [ x, converged ] = gauss_seidel(A, b, x_init, tol = eps, MAX_ITERATIONS = 10^5)
 
     % verifichiamo tol sia sensato
     if tol <= eps
