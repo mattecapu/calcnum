@@ -32,16 +32,13 @@ function [ A, b ] = gauss_triang(A, b)
 	for k = 1 : (n - 1)
 		% per ogni elemento da k in giù
 		i = (k + 1) : n;
-			% dividiamo ogni elemento al di sotto
-			% della diagonale per il k-esimo pivot
+			% coeff. con cui moltiplicare la i-esima riga
+			% (tale che A(i, k) si azzeri)
 			l = A(i, k) / A(k, k);
 
-			% azzeriamo la colonna sotto la diagonale
-			A(i, k) = 0;
-
-			% sottraiamo ad ogni riga di A
-			% la k-esima moltiplicata per il pivot
-			j = (k + 1) : n;
+			% sottraiamo alla i-esima riga
+			% la k-esima moltiplicata per il coeff. l
+			j = k : n;
 				A(i, j) -= l * A(k, j);
 
 			% facciamo altrettanto per b
