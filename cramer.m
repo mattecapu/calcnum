@@ -17,6 +17,6 @@ function [ x ] = cramer(A, b)
         error('A dev''essere regolare');
     end
 
-    x = A^-1 * b;
+    x = A \ b;
 
 end
