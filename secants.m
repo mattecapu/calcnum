@@ -24,7 +24,7 @@
 function [ x, it, converged ] = secants(func, x0, x1, tol = eps, MAX_ITERATIONS = 10^5)
 
     % verifichiamo tol sia sensato
-    if tol <= eps
+    if tol < eps
         tol = eps;
         disp('`tol` è più piccolo della precisione di macchina, riassegnato a eps');
     end
