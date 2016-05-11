@@ -15,7 +15,8 @@ function [ res ] = defpos(A)
     for i = 1 : size(A)
         % se l'i-esimo minore principale
         % ha determinante non negativo
-        if ~(det(sym(A(1 : i , 1 : i))) >= eps)
+        K = A(1 : i, 1 : i);
+        if is_singular(K) || det(K) < -eps
             % la matrice non è definita
             res = false;
             return;
