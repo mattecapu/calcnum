@@ -16,7 +16,7 @@ function [ B ] = triang_inv(L)
     if L ~= tril(L)
         error('L dev''essere triangolare inferiore');
     end
-    if abs(det(L)) <= eps
+    if is_singular(L)
         error('L dev''essere invertibile');
     end
 

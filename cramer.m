@@ -13,7 +13,7 @@
 
 function [ x ] = cramer(A, b)
 
-    if abs(det(A)) <= eps
+    if is_singular(A)
         error('A dev''essere regolare');
     end
 
