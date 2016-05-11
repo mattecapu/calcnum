@@ -59,7 +59,7 @@ function [ x, converged ] = gauss_seidel(A, b, x_init, tol = eps, MAX_ITERATIONS
     x_prev = x_init .^ 2;
 
     it = 0;
-    still_far_from_solution = true;
+    converged = true;
 
     while true
 
@@ -69,7 +69,6 @@ function [ x, converged ] = gauss_seidel(A, b, x_init, tol = eps, MAX_ITERATIONS
 
         % controlliamo la condizione di arresto
         if norm(x - x_prev) / min(norm(x), norm(x_prev)) <= tol
-            converged = true;
             break;
         end
 
