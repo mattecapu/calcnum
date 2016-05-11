@@ -1,11 +1,11 @@
 %
-% Trova uno zero di func vicino ad x0 con il metodo di Newton-Raphson™
+% Trova uno zero di func vicino ad x0 con il metodo di Newton™
 %
 % INPUT
 %   func:
 %       Funzione di cui trovare uno zero
-%	func_deriv:
-%		Derivata della funzione precedente
+%	jacob:
+%		Jacobiana della funzione precedente
 %   x:
 %       Approssimazione iniziale dello zero
 %   [tol = eps]:
@@ -23,29 +23,37 @@
 %       si è arrestato perchè la condizione di arresto è stata raggiunta
 %
 
-function [ x, it, converged ] = newton(func, func_deriv, x, tol = eps, MAX_ITERATIONS = 10^5)
+function [ x, it, converged ] = newton(func, jacob, x, tol = eps, MAX_ITERATIONS = 10^5)
 
 	% verifichiamo tol sia sensato
-	if tol <= eps
+	if tol < eps
 		tol = eps;
 		disp('`tol` è più piccolo della precisione di macchina, riassegnato a eps');
 	end
 
-	% stima conservativa sul valore della funzione
-	% nel punto iniziale
-	func_x = Inf;
-
     it = 0;
     converged = true;
 
-    while abs(func_x) > tol
-        % calcolo i valori della funzione
-        % e della derivata
-    	func_deriv_x = feval(func_deriv, x);
-        func_x = feval(func, x);
+    while true
+        % calcoliamo i valori della funzione
+        % e della jacobiana in x
+		func_x = feval(func, x);
+    	jacob_x = feval(jacob, x);
 
-        % aggiorno l'approssimazione
-        x -= (func_x / func_deriv_x);
+		if is_singular(jacob_x)
+			error('Lo zero è di molteplicità > 1');
+		end
+
+        % x_new è x(i+1) - x(i)
+		x_new = jacob_x \ -func_x;
+
+		% aggiorniamo l'approssimazione
+		x += x_new;
+
+		% per cui x(i+1) - x(i) = x_new
+		if norm(x_new, Inf) <= tol
+			break;
+		end
 
         if ++it >= MAX_ITERATIONS
             disp('Numero massimo di iterazioni raggiunto');
