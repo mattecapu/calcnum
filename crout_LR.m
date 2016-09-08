@@ -1,13 +1,13 @@
 %
 % Decompone la matrice A in due matrici triangolari
-% L (superiore) ed R (inferiroe) usando il metodo di Crout™
+% L (superiore) ed R (inferiore) usando il metodo di Crout™
 %
 % INPUT
 %	A:
 %		Matrice da decomporre
 %
 % OUTPUT
-%	L,R:
+%	L, R:
 %		Matrici triangolari tali che L*R = A
 %
 
@@ -30,7 +30,7 @@ function [ L, R ] = crout_LR(A)
 		j = 1 : (i - 1);
 			k = i : n;
 				R(i, k) = A(i, k) - L(i, j) * R(j, k);
-			k = (i + 1) : n;
+      		k = k(2:end)
 				L(k, i) = (A(k, i) - L(k, j) * R(j, i)) / R(i, i);
 	end
 end
